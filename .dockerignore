@@ -1,0 +1,6 @@
+# no VCS or build baggage in the build context.
+# (tests/ is included ON PURPOSE: the image doubles as its own test
+# environment — the README smoke run executes the repo's suite in a
+# sandbox running this image.)
+.git
+*.egg-info

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "slowdit"
+version = "0.1.0"
+description = "MCP server for executing untrusted code in an isolated environment"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "mcp[cli]<2.0",  # 2.0 dropped mcp.server.fastmcp
+    "pydantic>=2",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-asyncio>=0.23",
+    "pytest-mock",
+    "httpx",
+]
+
+[project.scripts]
+slowdit = "slowdit.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["slowdit*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

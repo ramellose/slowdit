@@ -1,0 +1,17 @@
+# slowdit self-test.
+#
+# Unit tests run on the docker runner — they use a FAKE docker on PATH, so no
+# daemon is needed here. The executor's container logic is exercised
+# end-to-end in CI (fake pull/run/kill + real verdict matrix).
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: docker
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v4
+      - name: Install and test
+        run: |
+          pip install --break-system-packages -e ".[test]"
+          scripts/run_tests.sh --junitxml=/tmp/slowdit-ci-results.xml
