@@ -269,8 +269,6 @@ The API reports which images the node can actually run and answers
 
 ## Planned features
 
-Working definitions for these live in [docs/design-notes.md](docs/design-notes.md).
-
 - VM profile 
 - Credential consumption contract
 - Network monitoring
